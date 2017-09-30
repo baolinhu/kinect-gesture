@@ -6,7 +6,7 @@
 //		开发测试所使用硬件：	KinectV2 Xbox
 //		操作系统：Windows 10
 //		Kinect SDK版本：KinectSDK-v2.0-PublicPreview1409-Setup 
-//		2017年4月 Created by @hu_nobuone@163.com
+//		2017年4月 Created by @胡保林 hu_nobuone@163.com
 //------------------------------------------------------------------------------------------------
 // MFC_DEMO01Dlg.cpp : 实现文件
 //
