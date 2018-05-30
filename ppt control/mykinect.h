@@ -47,6 +47,8 @@ private:
 	double Distance(Joint p1, Joint p2);
 	//检测函数
 	void CBodyBasics::Detection(Joint joints[]);
+	//ppt控制
+	void CBodyBasics::PPTControl(Joint joints[]);
 	//显示图像的Mat
 	cv::Mat skeletonImg;
 	cv::Mat depthImg;

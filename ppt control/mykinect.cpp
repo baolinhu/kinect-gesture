@@ -376,48 +376,13 @@ void CBodyBasics::ProcessBody(int nBodyCount, IBody** ppBodies)
 					DrawBone(joints, depthSpacePosition, JointType_KneeLeft, JointType_AnkleLeft);
 					DrawBone(joints, depthSpacePosition, JointType_AnkleLeft, JointType_FootLeft);
 
-
+				/****************************PPT动作控制******************************************/
 					//检测跌倒。距离超过0.5米时才检测，否则不检测
-					if (fabs(joints[JointType_SpineMid].Position.Z)>0.5)
-						Detection(joints);
-					/****************************PPT动作控制******************************************/
-					////向右
-					//if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandRight].Position.X) > 0.45)
-					//{
-					//	if (!leftDetection&&!rightDetection)
-					//	{
-					//		keybd_event(39, 0, 0, 0);
-					//		rightDetection = TRUE;
+					if (fabs(joints[JointType_SpineMid].Position.Z) > 0.5)
+						//Detection(joints);
+						PPTControl(joints);
+					
 
-					//	}
-
-					//}
-					//else
-					//	rightDetection = false;
-					////向左
-					//if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandLeft].Position.X) > 0.45)
-					//{
-					//	if (!leftDetection&&!rightDetection)
-					//	{
-					//		keybd_event(37, 0, 0, 0);
-					//		leftDetection = TRUE;
-
-					//	}
-					//}
-					//else
-					//	leftDetection = false;
-
-					//if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandLeft].Position.X) > 0.45)
-					//{
-					//	if (!leftDetection&&!rightDetection)
-					//	{
-					//		keybd_event(37, 0, 0, 0);
-					//		leftDetection = TRUE;
-
-					//	}
-					//}
-					//else
-					//	leftDetection = false;
 
 
 					cDrawHandState(colorSpacePosition[JointType_HandLeft], false);
@@ -435,7 +400,48 @@ void CBodyBasics::ProcessBody(int nBodyCount, IBody** ppBodies)
 	cv::imshow("skeletonImg", skeletonImg);
 	cv::waitKey(5);
 }
-///
+///ppt控制
+void CBodyBasics::PPTControl(Joint joints[])
+{
+	//向右
+	if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandRight].Position.X) > 0.45)
+	{
+		if (!leftDetection&&!rightDetection)
+		{
+			keybd_event(39, 0, 0, 0);
+			rightDetection = TRUE;
+
+		}
+
+	}
+	else
+		rightDetection = false;
+	//向左
+	if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandLeft].Position.X) > 0.45)
+	{
+		if (!leftDetection&&!rightDetection)
+		{
+			keybd_event(37, 0, 0, 0);
+			leftDetection = TRUE;
+
+		}
+	}
+	else
+		leftDetection = false;
+
+	if (fabs(joints[JointType_Head].Position.X - joints[JointType_HandLeft].Position.X) > 0.45)
+	{
+		if (!leftDetection&&!rightDetection)
+		{
+			keybd_event(37, 0, 0, 0);
+			leftDetection = TRUE;
+
+		}
+	}
+	else
+		leftDetection = false;
+}
+
 //检测程序
 void CBodyBasics::Detection(Joint joints[])
 {
